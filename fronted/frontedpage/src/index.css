@@ -1,0 +1,40 @@
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    font-family: math;
+    color: blue;
+    text-decoration: underline;
+    background-color: beige;
+}
+.number_jokes{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    font-family: cursive;
+    font-weight: 600;
+    color: black;
+    margin-top: 40px;
+}
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.heading2{
+    font-family: monospace;
+    font-weight: 600;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: brown;
+}
+.jokes{
+    font-family: math;
+    font-size: larger;
+    color: darkblue;
+}
