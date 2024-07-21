@@ -9,7 +9,7 @@ const connectDB = async () => {
     try {
         // Attempt to connect to the MongoDB database using the connection string
         // The connection string is composed of the environment variable MONGO_DB and the database name
-        const connectionInstance = await mongoose.connect(`${process.env.MONGO_DB}/${DB_NAME}`);
+        const connectionInstance = await mongoose.connect(`${process.env.MONGO_DB}${DB_NAME}`);
 
         // Log a success message indicating the database host
         console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);

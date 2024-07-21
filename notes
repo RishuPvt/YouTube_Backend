@@ -9,6 +9,6 @@ Server error responses (500 – 599)
 
 
 """ when we import without default we have to import it in curly braces and by export name 
-    when we import with default we have to import it by name any and without braces.
+    when we import with default we have to import it by  any name and without braces.
 
 """
