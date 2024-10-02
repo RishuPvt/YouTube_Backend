@@ -12,3 +12,12 @@ Server error responses (500 – 599)
     when we import with default we have to import it by  any name and without braces.
 
 """
+'''
+  //Extract the public ID from the existing avatar URL
+  const publicId = userAvtarDelete.avatar.split('/').pop().split('.')[0];
+
+ user.avatar.split('/') splits the URL by each /, turning it into an array of strings.
+ .pop() takes the last element from this array, which is the part after the last /. This would be something like ih49rjmyfp6bcjcsfd.jpg from your URL.
+ .split('.')[0] then splits that string by . and takes the first part, which gives you the public ID, in this case, ih49rjmyfp6bcjcsfd.
+
+'''
