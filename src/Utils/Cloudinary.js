@@ -14,7 +14,7 @@ cloudinary.config({
  * @returns {Object|null} - Returns the Cloudinary response object on success or null on failure.
  */
 
-const uploadOnCloudinary = async (localFilePath) => {
+const uploadOnCloudinary = async (localFilePath,resource_type="image") => {
     try {
       if (!localFilePath) return null;
       //console.log("in localpath",localFilePath);
@@ -22,7 +22,7 @@ const uploadOnCloudinary = async (localFilePath) => {
       //upload to cloudinary
   
       const response = await cloudinary.uploader.upload(localFilePath, {
-        resource_type: "auto",
+        resource_type: resource_type,
       })
       if (response) {
        fs.unlinkSync(localFilePath);// Remove the local file after successful upload

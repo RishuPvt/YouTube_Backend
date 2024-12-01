@@ -20,10 +20,10 @@ const videoSchema = new Schema(
             type: String, 
             required: true
         },
-        duration: {
-            type: Number, // Duration of the video in seconds
-            required: true
-        },
+        // duration: {
+        //     type: Number,
+        //     required: true
+        // },
         views: {
             type: Number,
             default: 0 // Default views count is 0

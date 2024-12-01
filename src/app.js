@@ -34,6 +34,11 @@ import UserRouter from "./Routes/user.routes.js";
 // Setting up the "/user" route to be handled by UserRouter
 app.use("/api/v1/users", UserRouter);
 
+// Importing video routes from the "user.routes.js" file
+import VideoRouter from "../src/Routes/video.routes.js";
+
+// Setting up the "/video" route to be handled by VideoRouter
+app.use("/api/v1/video" , VideoRouter);
 
 // http://localhost:8000/api/v1/users/register
 
