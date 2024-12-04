@@ -36,6 +36,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
     description,
     videoFile: videoFile.url,
     thumbnail: thumbnail.url,
+    owner: req.user._id,
   });
   return res
     .status(200)
@@ -46,8 +47,31 @@ const publishAVideo = asyncHandler(async (req, res) => {
 
 //Hanler to get Allvideo by id
 const getAllVideos = asyncHandler(async (req, res) => {
-  const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query;
-  //TODO: get all videos based on query, sort, pagination
+  const { page = 1, limit = 10 } = req.query;
+
+  const video = await Video.find()
+    .populate("owner", "username fullName")
+    .sort({ createdAt: -1 })
+    .limit(parseInt(limit));
+  if (!video.length) {
+    throw new ApiError(404, "No videos found");
+  }
+
+  const totalVideos = await Video.countDocuments(); // Count videos matching the filter
+  const totalPages = Math.ceil(totalVideos / limit);
+
+  res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        video,
+        totalVideos,
+        totalPages,
+        currentPage: parseInt(page),
+      },
+      "Videos retrieved successfully",
+    ),
+  );
 });
 
 //Hanler to get video by id
@@ -127,13 +151,29 @@ const deleteVideo = asyncHandler(async (req, res) => {
   if (!video) {
     throw new ApiError(404, "video not found");
   }
-  return res.status(200).json(
-    new ApiResponse(200, video, "video deleted successfully"),
-  );
+  return res
+    .status(200)
+    .json(new ApiResponse(200, video, "video deleted successfully"));
 });
 
 const togglePublishStatus = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
+  if (!videoId) {
+    throw new ApiError(400, "Video ID is required");
+  }
+  const video = await Video.findById(videoId);
+  if (!video) {
+    throw new ApiError(404, "Video not found");
+  }
+  // Toggle the isPublished status
+  video.isPublished = !video.isPublished;
+  await video.save();
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, video, "Video publish status toggled successfully"),
+    );
 });
 
 export {

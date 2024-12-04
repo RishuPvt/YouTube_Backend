@@ -40,6 +40,14 @@ import VideoRouter from "../src/Routes/video.routes.js";
 // Setting up the "/video" route to be handled by VideoRouter
 app.use("/api/v1/video" , VideoRouter);
 
+
+import TweetRouter from "../src/Routes/tweet.routes.js"
+
+app.use("/api/v1/tweets",TweetRouter )
+
+
+
+
 // http://localhost:8000/api/v1/users/register
 
 
