@@ -46,7 +46,9 @@ import TweetRouter from "../src/Routes/tweet.routes.js"
 app.use("/api/v1/tweets",TweetRouter )
 
 
+import SubscriptionRouter from "../src/Routes/subscription.routes.js";
 
+app.use ("/api/v1/subscription" , SubscriptionRouter)
 
 
 // http://localhost:8000/api/v1/users/register
