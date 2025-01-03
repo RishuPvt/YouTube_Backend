@@ -308,17 +308,18 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
   if (!fullName || !email) {
     // Throw error if required fields are missing
-    throw new ApiError(400, "All fields are required");
+    throw new ApiError(400, "At least one field is required");
   }
+
+  const updateFields={}
+  if(fullName)updateFields.fullName=fullName;
+  if(email)updateFields.email=email;
 
   // Find the user by ID and update full name and email
   const user = await User.findByIdAndUpdate(
     req.user?._id,
     {
-      $set: {
-        fullName,
-        email,
-      },
+      $set: updateFields
     },
     { new: true }, // Return the updated user
   ).select("-password"); // Exclude password from the result
