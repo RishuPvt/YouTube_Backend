@@ -50,6 +50,11 @@ import SubscriptionRouter from "../src/Routes/subscription.routes.js";
 
 app.use ("/api/v1/subscription" , SubscriptionRouter)
 
+import playlistRouter from "../src/Routes/playlist.routes.js"
+
+app.use("/api/v1/playlist" ,playlistRouter )
+
+
 
 // http://localhost:8000/api/v1/users/register
 
