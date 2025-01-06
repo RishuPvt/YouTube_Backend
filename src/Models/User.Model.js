@@ -45,7 +45,7 @@ const userSchema = new Schema(
         },
         refreshToken: {
             type: String // Refresh token for maintaining session
-        }
+        },
     },
     {
         timestamps: true // Automatically add createdAt and updatedAt timestamps
