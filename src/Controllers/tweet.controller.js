@@ -44,7 +44,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
     throw new ApiError(404, "No tweets found for the user");
   }
 
-  res.status(200).json(
+  return res.status(200).json(
     new ApiResponse(200, "User tweets retrieved successfully", {
       tweet,
     }),
@@ -79,7 +79,7 @@ const updateTweet = asyncHandler(async (req, res) => {
 
   await tweet.save();
 
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, updateTweet, "Tweet updated successfully"));
 });
@@ -93,7 +93,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
   if (!tweet) {
     throw new ApiError(404, "Tweet not found");
   }
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, "Tweet deleted successfully", tweet));
 });
@@ -112,7 +112,7 @@ const getAllTweets = asyncHandler(async (req, res) => {
   const totalTweets = await Tweet.countDocuments();
   const totalPages = Math.ceil(totalTweets / limit);
 
-  res.status(200).json(
+  return res.status(200).json(
     new ApiResponse(
       200,
       {
